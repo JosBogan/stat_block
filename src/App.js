@@ -14,14 +14,27 @@ function App() {
     type: "",
     specifics: "",
     alignment: "",
+    ac: 0,
     hitpoints: "",
     groundspeed: 0,
     swimspeed: 0,
-    flyspeed: 0
+    flyspeed: 0,
+    str: 0,
+    dex: 0,
+    con: 0,
+    int: 0,
+    wis: 0,
+    cha: 0
   })
 
   function onChange(event) {
-    setStats({...stats, [event.target.name]: event.target.value })
+    // console.log(event)
+    if (event.type === 'dropdown') {
+      setStats({...stats, [event.input]: event.dataLabel })
+    } else {
+      setStats({...stats, [event.target.name]: event.target.value })
+    }
+    // console.log([event.input], event.dataName)
   }
 
   return (

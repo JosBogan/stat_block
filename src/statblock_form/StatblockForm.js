@@ -1,68 +1,49 @@
 // Libraries
-import React from 'react'
+import React, { useState } from 'react'
 
 // Components
 import SectionTabs from './SectionTabs'
-import TextInput from './inputs/TextInput'
+// import TextInput from './inputs/TextInput'
+// import Dropdown from './inputs/Dropdown'
+
+import Details from './tabs/Details'
+import Properties from './tabs/Properties'
+import Stats from './tabs/Stats'
+import Actions from './tabs/Actions'
 
 
 function StatblockForm(props) {
+
+  const [ currentPanel, setCurrentPanel ] = useState('details')
+
+  function renderSwitch() {
+    switch (currentPanel) {
+      case 'details':
+        return <Details onChange={props.onChange}/>
+      case 'properties':
+        return <Properties onChange={props.onChange}/>
+      case 'stats':
+        return <Stats onChange={props.onChange}/>
+      case 'actions':
+        return <Actions onChange={props.onChange}/>
+      default:
+        return <Details onChange={props.onChange}/>
+    }
+  }
+
+  function changeTabs(event, panel) {
+    console.log(panel)
+    setCurrentPanel(panel)
+  }
+
   return (
     <div className="statblock_form_container section">
-      <SectionTabs />
+      <SectionTabs changeTabs={changeTabs}/>
       <form>
-        <div className="Creature Details">
-          <h3>Creature Details</h3>
-            <TextInput 
-            name="name" 
-            label="Name" 
-            onChange={props.onChange}
-          />
-          <div>
-            <label>Size</label>
-            <select 
-              onChange={props.onChange}
-              name="size"
-            >
-              <option>Tiny</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
-              <option>Huge</option>
-              <option>Gargantuan</option>
-            </select>
-          </div>
-          <div>
-            <label>Type</label>
-            <select onChange={props.onChange} name="type">
-              <option>Tiny</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
-              <option>Huge</option>
-              <option>Gargantuan</option>
-            </select>
-          </div>
-          <TextInput 
-            name="specifics" 
-            label="Specifics" 
-            onChange={props.onChange}
-          />
-          <TextInput 
-            name="alignment" 
-            label="Alignment" 
-            onChange={props.onChange}
-          />
-          <TextInput 
-            name="hitpoints" 
-            label="Hit Points" 
-            onChange={props.onChange}
-          />
-          <div>
-            <label>Speed</label>
-            <input type="number" className="input" onChange={props.onChange} name="groundspeed"></input>ft
-          </div>
-        </div>
+        {renderSwitch()}
+        {/* <Details 
+          onChange={props.onChange}
+        /> */}
       </form>
     </div>
   )
