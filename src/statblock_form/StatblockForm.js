@@ -1,32 +1,29 @@
+// Libraries
 import React from 'react'
+
+// Components
+import SectionTabs from './SectionTabs'
+import TextInput from './inputs/TextInput'
+
 
 function StatblockForm(props) {
   return (
     <div className="statblock_form_container section">
-      <div className="statblock_section_selection">
-        <div className="statblock_form_tab">
-          Detals
-        </div>
-        <div className="statblock_form_tab">
-          Stats
-        </div>
-        <div className="statblock_form_tab">
-          Properties
-        </div>
-        <div className="statblock_form_tab">
-          Actions
-        </div>
-      </div>
+      <SectionTabs />
       <form>
         <div className="Creature Details">
           <h3>Creature Details</h3>
-          <div>
-            <label>Name</label>
-            <input className="input"></input>
-          </div>
+            <TextInput 
+            name="name" 
+            label="Name" 
+            onChange={props.onChange}
+          />
           <div>
             <label>Size</label>
-            <select>
+            <select 
+              onChange={props.onChange}
+              name="size"
+            >
               <option>Tiny</option>
               <option>Small</option>
               <option>Medium</option>
@@ -37,7 +34,7 @@ function StatblockForm(props) {
           </div>
           <div>
             <label>Type</label>
-            <select>
+            <select onChange={props.onChange} name="type">
               <option>Tiny</option>
               <option>Small</option>
               <option>Medium</option>
@@ -46,21 +43,24 @@ function StatblockForm(props) {
               <option>Gargantuan</option>
             </select>
           </div>
-          <div>
-            <label>Specifics</label>
-            <input className="input"></input>
-          </div>
-          <div>
-            <label>Alignment</label>
-            <input className="input"></input>
-          </div>
-          <div>
-            <label>Hit Points</label>
-            <input className="input"></input>
-          </div>
+          <TextInput 
+            name="specifics" 
+            label="Specifics" 
+            onChange={props.onChange}
+          />
+          <TextInput 
+            name="alignment" 
+            label="Alignment" 
+            onChange={props.onChange}
+          />
+          <TextInput 
+            name="hitpoints" 
+            label="Hit Points" 
+            onChange={props.onChange}
+          />
           <div>
             <label>Speed</label>
-            <input type="number" className="input"></input>ft
+            <input type="number" className="input" onChange={props.onChange} name="groundspeed"></input>ft
           </div>
         </div>
       </form>

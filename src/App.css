@@ -4,7 +4,7 @@
 .app_container {
   display: flex;
   /* flex: 1; */
-  background-color: #282c34;
+  background-color: rgb(255, 255, 255);
   min-height: 100vh;
   flex: 1;
   align-items: stretch;
@@ -14,11 +14,11 @@
 }
 
 .app_container > * {
-  flex-grow: 1;
+  flex: 1;
 }
 
 .stat_block_form {
-  background-color: #ffffff1c;
+  background-color: #4c5363;
 }
 
 .section {
@@ -40,10 +40,13 @@
 }
 
 .statblock_form_tab {
-  background: #ffffff67;
+  background: white;
   padding: 10px 10px;
   margin: 0 10px;
   border-radius: 0 0 5px 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 .input {
@@ -56,4 +59,11 @@
 
 .input:focus {
   border-color: aquamarine;
+}
+
+/* Statblock */
+
+.statblock {
+  background: rgb(247, 224, 181);
+  color: black;
 }
