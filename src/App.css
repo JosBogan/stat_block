@@ -17,8 +17,12 @@
   flex: 1;
 }
 
-.stat_block_form {
+.stat_block_form_section {
   background-color: #4c5363;
+}
+
+.statblock_form {
+  padding-top: 40px;
 }
 
 .section {
@@ -31,22 +35,34 @@
 }
 
 .statblock_form_container {
+  position: relative;
   flex-direction: column;
 }
 
 .statblock_section_selection {
+  top: 0;
+  width: 100%;
+  position: absolute;
   display: flex;
   justify-content: center;
 }
 
 .statblock_form_tab {
   background: white;
-  padding: 10px 10px;
+  /* padding: 10px 10px; */
+  height: 40px;
   margin: 0 10px;
   border-radius: 0 0 5px 5px;
   outline: none;
   border: none;
   cursor: pointer;
+  transition: all 0.1s;
+  width: 80px;
+  /* position: absolute; */
+}
+
+.statblock_form_tab:hover {
+  height: 60px;
 }
 
 .input {
@@ -68,6 +84,10 @@
   color: black;
   min-width: 400px;
   min-height: 200px;
+}
+
+.creature_name {
+  font-family: "Libre Baskerville";
 }
 
 /* Inputs */

@@ -24,7 +24,16 @@ function App() {
     con: 0,
     int: 0,
     wis: 0,
-    cha: 0
+    cha: 0,
+    savingThrows: [],
+    skills: [],
+    damageVul: [],
+    damageRes: [],
+    damageImm: [],
+    conditionImm: [],
+    senses: [],
+    languages: [],
+    challange: 0
   })
 
   function onChange(event) {
@@ -43,7 +52,7 @@ function App() {
         <div className="stat_block">
           <Statblock stats={stats}/>
         </div>
-        <div className="stat_block_form">
+        <div className="stat_block_form_section">
           <StatblockForm onChange={onChange}/>
         </div>
       </div>

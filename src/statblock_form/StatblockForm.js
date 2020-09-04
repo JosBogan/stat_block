@@ -39,7 +39,7 @@ function StatblockForm(props) {
   return (
     <div className="statblock_form_container section">
       <SectionTabs changeTabs={changeTabs}/>
-      <form>
+      <form className="statblock_form">
         {renderSwitch()}
         {/* <Details 
           onChange={props.onChange}

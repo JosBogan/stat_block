@@ -7,7 +7,7 @@ function SectionTabs(props) {
       className="statblock_form_tab"
       onClick={(event) => props.changeTabs(event, 'details')}
     >
-      Detals
+      Details
     </button>
     <button 
       className="statblock_form_tab"
