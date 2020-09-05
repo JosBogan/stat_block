@@ -55,34 +55,39 @@ function Details(props) {
       name="name" 
       label="Name" 
       onChange={props.onChange}
+      value={props.stats.name}
     />
     <Dropdown 
       label="Size"
       dataLabel="size"
       onChange={props.onChange}
       options={sizes}
+      value={props.stats.size}
     />
     <Dropdown 
       label="Type"
       dataLabel="type"
       onChange={props.onChange}
       options={types}
+      value={props.stats.type}
     />
-
     <TextInput 
       name="specifics" 
       label="Specifics" 
       onChange={props.onChange}
+      value={props.stats.specifics}
     />
     <TextInput 
       name="alignment" 
       label="Alignment" 
       onChange={props.onChange}
+      value={props.stats.alignment}
     />
     <TextInput 
       name="hitpoints" 
       label="Hit Points" 
       onChange={props.onChange}
+      value={props.stats.hitpoints}
     />
     <div>
       <label>Speed</label>

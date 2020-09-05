@@ -10,6 +10,7 @@ function NumberInput(props) {
         min={0}
         name={props.name}
         onChange={props.onChange}
+        value={props.value}
       />
     </div>
   )

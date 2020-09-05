@@ -20,7 +20,7 @@ function Statblock(props) {
             <strong>Hit Points</strong> {props.stats.hitpoints}
           </div>
           <div>
-            <strong>Speed</strong> {props.stats.speed}ft
+            <strong>Speed</strong> {props.stats.groundspeed}ft
           </div>
         </div>
         <div className="stats_ability_scores">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Dropdown(props) {
 
@@ -9,6 +9,12 @@ function Dropdown(props) {
     type: 'dropdown',
     input: props.dataLabel
   })
+
+  // useEffect(() => {
+  //   if (!props.value) {
+  //     setSelected({...selected, dataLabel: props.value})
+  //   }
+  // }, [props.value, selected])
 
   function onOpen() {
     console.log('here')

@@ -8,6 +8,7 @@ function TextInput(props) {
         className="input"
         name={props.name}
         onChange={props.onChange}
+        value={props.value}
       />
     </div>
   )

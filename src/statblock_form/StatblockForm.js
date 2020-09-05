@@ -19,15 +19,15 @@ function StatblockForm(props) {
   function renderSwitch() {
     switch (currentPanel) {
       case 'details':
-        return <Details onChange={props.onChange}/>
+        return <Details onChange={props.onChange} stats={props.stats}/>
       case 'properties':
-        return <Properties onChange={props.onChange}/>
+        return <Properties onChange={props.onChange} stats={props.stats}/>
       case 'stats':
-        return <Stats onChange={props.onChange}/>
+        return <Stats onChange={props.onChange} stats={props.stats}/>
       case 'actions':
-        return <Actions onChange={props.onChange}/>
+        return <Actions onChange={props.onChange} stats={props.stats}/>
       default:
-        return <Details onChange={props.onChange}/>
+        return <Details onChange={props.onChange} stats={props.stats}/>
     }
   }
 

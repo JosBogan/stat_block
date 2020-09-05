@@ -53,7 +53,7 @@ function App() {
           <Statblock stats={stats}/>
         </div>
         <div className="stat_block_form_section">
-          <StatblockForm onChange={onChange}/>
+          <StatblockForm onChange={onChange} stats={stats}/>
         </div>
       </div>
     </div>
