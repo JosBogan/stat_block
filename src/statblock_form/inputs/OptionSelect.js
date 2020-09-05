@@ -8,7 +8,8 @@ function OptionSelect(props) {
   function onClick(event, option) {
     const property = [...properties, option]
     setProperties(property)
-    // props.onChange()
+    const inputObj = {type: 'optionSelect', input: props.label, value: property}
+    props.onChange(inputObj)
     console.log('placeholder')
     openDropdown()
   }

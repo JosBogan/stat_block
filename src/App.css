@@ -9,7 +9,8 @@
   flex: 1;
   align-items: stretch;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* font-size: 1em; */
+  /* font-size: calc(10px + 2vmin); */
   color: white;
 }
 
@@ -82,12 +83,30 @@
 .statblock {
   background: rgb(247, 224, 181);
   color: black;
+  padding: 10px;
   min-width: 400px;
   min-height: 200px;
 }
 
 .creature_name {
   font-family: "Libre Baskerville";
+  margin: 5px 0px;
+}
+
+.creature_traits {
+}
+
+.section_rule {
+  height: 0px;
+  margin: 5px 0;
+  width: 100%;
+  border-left: 380px solid #a12a12;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+
+.horizontal_property_list {
+  display: flex;
 }
 
 /* Inputs */

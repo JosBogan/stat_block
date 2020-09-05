@@ -9,7 +9,7 @@ import Statblock from './statblock/Statblock'
 function App() {
 
   const [ stats, setStats ] = useState({
-    name: "",
+    name: "New Creature",
     size: "",
     type: "",
     specifics: "",
@@ -40,6 +40,8 @@ function App() {
     // console.log(event)
     if (event.type === 'dropdown') {
       setStats({...stats, [event.input]: event.dataLabel })
+    } else if (event.type === 'optionSelect') {
+      setStats({...stats, [event.input]: event.value })
     } else {
       setStats({...stats, [event.target.name]: event.target.value })
     }
