@@ -4,7 +4,25 @@ import TextInput from '../inputs/TextInput'
 import Dropdown from '../inputs/Dropdown'
 import Ac from '../inputs/specific/Ac'
 
+import changeName from '../../state/actions'
+import changeSize from '../../state/actions'
+
+import store from '../../state/store'
+
 function Details(props) {
+
+  function onChangeTest(event) {
+    switch (event.target.name) {
+      case 'name':
+        store.dispatch(changeName(event.target.value))
+        break
+      // case 'size':
+        // store.dispatch(changeSize(event.))
+      default:
+        return
+    }
+    console.log(store.getState())
+  }
 
   const types = [
     {
@@ -55,8 +73,9 @@ function Details(props) {
     <TextInput 
       name="name" 
       label="Name" 
-      onChange={props.onChange}
-      value={props.stats.name}
+      // onChange={props.onChange}
+      onChange={onChangeTest}
+      // value={props.stats.name}
     />
     <Dropdown 
       label="Size"

@@ -51,7 +51,9 @@ function App() {
 
   function acStats(input) {
     console.log(input)
-    // setStats({...stats, ac: input.ac, acType: input.acType})
+    if (input.ac !== stats.ac || input.acType !== stats.acType)  {
+      setStats({...stats, ac: input.ac, acType: input.acType})
+    }
   }
 
   return (

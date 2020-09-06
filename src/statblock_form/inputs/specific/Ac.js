@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react'
 
 function Ac(props) {
 
+  const { acStats } = props
+  console.log(acStats)
   const [ac, setAc] = useState(0)
   const [acType, setAcType] = useState()
   const [armourType, setArmourType] = useState(null)
   const [shield, setShield] = useState(false)
 
   useEffect(() => {
-    props.acStats({ac, acType, armourType, shield})
-  }, [props, ac, acType, armourType, shield])
+    acStats({ac, acType, armourType, shield})
+  }, [acStats, ac, acType, armourType, shield])
 
   useEffect(() => {
     if (!armourType) return
