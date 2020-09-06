@@ -10,14 +10,19 @@ function Dropdown(props) {
     input: props.dataLabel
   })
 
-  // useEffect(() => {
-  //   if (!props.value) {
-  //     setSelected({...selected, dataLabel: props.value})
-  //   }
-  // }, [props.value, selected])
+  useEffect(() => {
+    document.addEventListener("click", closeAll);
+  }, [])
+
+  function closeAll(event) {
+    // if (event.target.)
+    if (event.target.className !== 'selected') {
+      setOpen(false)
+    }
+  }
 
   function onOpen() {
-    console.log('here')
+    // console.log('here')
     setOpen(!open)
   }
 

@@ -8,12 +8,12 @@ import OptionSelect from '../inputs/OptionSelect'
 function Properties(props) {
 
   const skills = [
-    {label: 'strength',},
-    {label: 'dexterity', },
-    {label: 'constitution', },
-    {label: 'intelligence', },
-    {label: 'wisdom', },
-    {label: 'charisma'},
+    {label: 'strength'},
+    {label: 'dexterity'},
+    {label: 'constitution'},
+    {label: 'intelligence'},
+    {label: 'wisdom'},
+    {label: 'charisma'}
   ]
 
   const damageRes = [

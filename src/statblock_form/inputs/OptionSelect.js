@@ -1,14 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function OptionSelect(props) {
 
   const [ properties, setProperties ] = useState([])
   const [ open, setOpen ] = useState(false)
 
+  // useEffect(() => {
+  //   document.addEventListener("click", closeAll);
+  // }, [])
+
+  // function closeAll(event) {
+  //   // if (event.target.)
+  //   console.log(event.target)
+  //   setOpen(false)
+  // }
+
   function onClick(event, option) {
-    const property = [...properties, option]
-    setProperties(property)
-    const inputObj = {type: 'optionSelect', input: props.label, value: property}
+    const newProperties = [...properties, option]
+    setProperties(newProperties)
+    const inputObj = {type: 'optionSelect', input: props.label, value: newProperties}
     props.onChange(inputObj)
     console.log('placeholder')
     openDropdown()
@@ -20,12 +30,13 @@ function OptionSelect(props) {
 
   return (
     <div>
+      {console.log(properties)}
       <label>{props.label}</label>
       {properties.map((property) => (
         <div>{property.label}</div>
       ))}
       {properties.length < props.options.length &&
-      <div
+      <div className="new_option_select"
         onClick={openDropdown}
       >+</div>}
       <div 

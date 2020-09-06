@@ -17,7 +17,6 @@ function Statblock(props) {
 
   return (
     <div className="statblock_container section">
-      {console.log(props.stats)}
       <div className="statblock">
         <div>
           <h3 className="creature_name">
@@ -30,7 +29,7 @@ function Statblock(props) {
         <div className="section_rule"></div>
         <div>
           <div>
-            <strong>Armour Class</strong> {props.stats.ac}
+            <strong>Armour Class</strong> {props.stats.ac} ({props.stats.acType})
           </div>
           <div>
             <strong>Hit Points</strong> {hitpointCalc(props.stats.hitpoints)}

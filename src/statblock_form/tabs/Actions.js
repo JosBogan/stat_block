@@ -7,8 +7,8 @@ function Actions(props) {
 
   return (
     <div className="Creature Details">
-      <h3>Creature Actions</h3>
-
+      <h3>Creature Traits/Actions</h3>
+      
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 
 import TextInput from '../inputs/TextInput'
 import Dropdown from '../inputs/Dropdown'
+import Ac from '../inputs/specific/Ac'
 
 function Details(props) {
 
@@ -82,6 +83,12 @@ function Details(props) {
       label="Alignment" 
       onChange={props.onChange}
       value={props.stats.alignment}
+    />
+    <Ac 
+      label="Armour Class"
+      changeAc={props.changeAc}
+      changeAcType={props.changeAcType}
+      value={[props.stats.acType, props.stats.ac]}
     />
     <TextInput 
       name="hitpoints" 

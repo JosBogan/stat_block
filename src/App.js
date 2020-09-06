@@ -15,6 +15,7 @@ function App() {
     specifics: "",
     alignment: "",
     ac: 0,
+    acType: "",
     hitpoints: "",
     groundspeed: 0,
     swimspeed: 0,
@@ -33,7 +34,9 @@ function App() {
     conditionImm: [],
     senses: [],
     languages: [],
-    challange: 0
+    challange: 0,
+    traits: [],
+    actions: []
   })
 
   function onChange(event) {
@@ -48,6 +51,14 @@ function App() {
     // console.log([event.input], event.dataName)
   }
 
+  function changeAc(event) {
+    setStats({...stats, ac: event.target.value })
+  }
+
+  function changeAcType(type) {
+    setStats({...stats, acType: type })
+  }
+
   return (
     <div className="app">
       <div className="app_container">
@@ -55,7 +66,7 @@ function App() {
           <Statblock stats={stats}/>
         </div>
         <div className="stat_block_form_section">
-          <StatblockForm onChange={onChange} stats={stats}/>
+          <StatblockForm onChange={onChange} changeAc={changeAc} changeAcType={changeAcType} stats={stats}/>
         </div>
       </div>
     </div>
