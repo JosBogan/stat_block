@@ -4,12 +4,22 @@ function Ac(props) {
 
   // const [ac, setAc] = useState(0)
   const [acType, setAcType] = useState()
+  const [armourType, setArmourType] = useState({ type: '', ac: 0, weight: '' })
+  const [shield, setShield] = useState(false)
 
   function changeAcType(event) {
     event.preventDefault()
     const armourType = event.target.getAttribute('data-id')
     setAcType(armourType)
     props.changeAcType(armourType)
+  }
+
+  function selectArmourType(event, armour) {
+    if (armour.type === 'Shield') {
+      setShield(!shield)
+    } else {
+      setArmourType(armour)
+    }
   }
 
   // function onChange(event) {
@@ -31,7 +41,6 @@ function Ac(props) {
     { type: 'Splint', ac: 17, weight: 'heavy' },
     { type: 'Plate', ac: 18, weight: 'heavy' },
     { type: 'Shield', ac: 2, weight: 'other' },
-
   ]
 
   return (
@@ -62,13 +71,17 @@ function Ac(props) {
               value={props.value[1]}
             />
           }
+          {acType === 'other' && <input />}
           {acType === 'worn armour' && 
-          <div>
+          <div className="armour_options">
             {wornArmourTypes.map(armour => (
-              <div>{
-                armour.type} - {armour.ac} 
+              <div 
+                className={`armour_type ${armourType.type && (armour.type === armourType.type) ? 'armour_type_selected': ''} ${shield && armour.type === 'Shield' ? 'armour_type_selected' : ''}`}
+                onClick={(event) => selectArmourType(event, armour)}>
+                {armour.type} - {armour.weight === 'other' && '+'}{armour.ac} 
                 {(armour.weight === 'light' || armour.weight === 'medium') && ' + Dex Modifier'} 
-                {armour.weight === 'medium' && '(Max 2)'}</div>
+                {armour.weight === 'medium' && ' (Max 2)'}
+              </div>
             ))}
           </div>
           }

@@ -132,3 +132,24 @@
   flex-direction: column;
   align-items: center;
 }
+
+/* Ac */
+
+.armour_type {
+  cursor: pointer;
+}
+
+
+.armour_type:nth-of-type(odd) {
+  background: rgba(255, 255, 255, 0.171);
+}
+
+.armour_type:hover {
+  background: rgb(255, 255, 255);
+  color: black;
+}
+
+.armour_options .armour_type_selected {
+  background: rgb(255, 255, 255);
+  color: black;
+}
