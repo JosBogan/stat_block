@@ -1,31 +1,51 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Ac(props) {
 
-  // const [ac, setAc] = useState(0)
+  const [ac, setAc] = useState(0)
   const [acType, setAcType] = useState()
-  const [armourType, setArmourType] = useState({ type: '', ac: 0, weight: '' })
+  const [armourType, setArmourType] = useState(null)
   const [shield, setShield] = useState(false)
+
+  useEffect(() => {
+    props.acStats({ac, acType, armourType, shield})
+  }, [props, ac, acType, armourType, shield])
+
+  useEffect(() => {
+    if (!armourType) return
+    let ac = armourType.ac
+    if (shield) ac += 2
+    const mod = Math.floor(props.dex/2 - 5)
+    switch (armourType.weight) {
+      case 'light':
+        ac += mod
+        break
+      case 'medium':
+        if (mod >= 2) {
+          ac += 2
+        } else {
+          ac += mod
+        }
+        break
+      default:
+    }
+    setAc(ac)
+  }, [armourType, props.dex, shield])
 
   function changeAcType(event) {
     event.preventDefault()
     const armourType = event.target.getAttribute('data-id')
     setAcType(armourType)
-    props.changeAcType(armourType)
+    if (armourType !== 'worn armour') setArmourType(null)
   }
 
-  function selectArmourType(event, armour) {
+  function selectArmourType(armour) {
     if (armour.type === 'Shield') {
       setShield(!shield)
     } else {
       setArmourType(armour)
     }
   }
-
-  // function onChange(event) {
-  //   setAc(event.target.value)
-  //   props.onChange()
-  // }
 
   const wornArmourTypes = [
     { type: 'Padded', ac: 11, weight: 'light' },
@@ -67,8 +87,8 @@ function Ac(props) {
             <input 
               type="number"
               name="ac"
-              onChange={(event) => props.changeAc(event)}
-              value={props.value[1]}
+              onChange={(event) => setAc(event.target.value)}
+              // value={props.value[1]}
             />
           }
           {acType === 'other' && <input />}
@@ -76,8 +96,8 @@ function Ac(props) {
           <div className="armour_options">
             {wornArmourTypes.map(armour => (
               <div 
-                className={`armour_type ${armourType.type && (armour.type === armourType.type) ? 'armour_type_selected': ''} ${shield && armour.type === 'Shield' ? 'armour_type_selected' : ''}`}
-                onClick={(event) => selectArmourType(event, armour)}>
+                className={`armour_type ${armourType && (armour.type === armourType.type) ? 'armour_type_selected': ''} ${shield && armour.type === 'Shield' ? 'armour_type_selected' : ''}`}
+                onClick={(event) => selectArmourType(armour)}>
                 {armour.type} - {armour.weight === 'other' && '+'}{armour.ac} 
                 {(armour.weight === 'light' || armour.weight === 'medium') && ' + Dex Modifier'} 
                 {armour.weight === 'medium' && ' (Max 2)'}

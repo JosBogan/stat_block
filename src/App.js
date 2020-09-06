@@ -20,12 +20,12 @@ function App() {
     groundspeed: 0,
     swimspeed: 0,
     flyspeed: 0,
-    str: 0,
-    dex: 0,
-    con: 0,
-    int: 0,
-    wis: 0,
-    cha: 0,
+    str: 10,
+    dex: 10,
+    con: 10,
+    int: 10,
+    wis: 10,
+    cha: 10,
     savingThrows: [],
     skills: [],
     damageVul: [],
@@ -40,7 +40,6 @@ function App() {
   })
 
   function onChange(event) {
-    // console.log(event)
     if (event.type === 'dropdown') {
       setStats({...stats, [event.input]: event.dataLabel })
     } else if (event.type === 'optionSelect') {
@@ -48,15 +47,11 @@ function App() {
     } else {
       setStats({...stats, [event.target.name]: event.target.value })
     }
-    // console.log([event.input], event.dataName)
   }
 
-  function changeAc(event) {
-    setStats({...stats, ac: event.target.value })
-  }
-
-  function changeAcType(type) {
-    setStats({...stats, acType: type })
+  function acStats(input) {
+    console.log(input)
+    // setStats({...stats, ac: input.ac, acType: input.acType})
   }
 
   return (
@@ -66,7 +61,10 @@ function App() {
           <Statblock stats={stats}/>
         </div>
         <div className="stat_block_form_section">
-          <StatblockForm onChange={onChange} changeAc={changeAc} changeAcType={changeAcType} stats={stats}/>
+          <StatblockForm 
+            onChange={onChange} 
+            acStats={acStats}
+            stats={stats}/>
         </div>
       </div>
     </div>

@@ -86,8 +86,8 @@ function Details(props) {
     />
     <Ac 
       label="Armour Class"
-      changeAc={props.changeAc}
-      changeAcType={props.changeAcType}
+      acStats={props.acStats}
+      dex={props.stats.dex}
       value={[props.stats.acType, props.stats.ac]}
     />
     <TextInput 
