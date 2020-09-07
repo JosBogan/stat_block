@@ -13,6 +13,8 @@ function Ac(props) {
     acStats({ac, acType, armourType, shield})
   }, [acStats, ac, acType, armourType, shield])
 
+
+  
   useEffect(() => {
     if (!armourType) return
     let ac = armourType.ac

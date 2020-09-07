@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 // components
@@ -39,6 +39,34 @@ function App() {
     actions: []
   })
 
+  const [acCalcs, setAcCalcs] = useState({
+    baseAc: 10,
+    // dexMod: 0,
+    armourType: null,
+    shield: false
+  })
+
+  useEffect(() => {
+    if (!acCalcs.armourType) return setStats({...stats, ac: acCalcs.baseAc})
+    let ac = acCalcs.armourType.ac
+    if (acCalcs.shield) ac += 2
+    const mod = Math.floor(stats.dex/2 - 5)
+    switch (acCalcs.armourType.weight) {
+      case 'light':
+        ac += mod
+        break
+      case 'medium':
+        if (mod >= 2) {
+          ac += 2
+        } else {
+          ac += mod
+        }
+        break
+      default:
+    }
+    setStats({...stats, ac})
+  }, [acCalcs.armourType, acCalcs.baseAc, acCalcs.shield, stats])
+
   function onChange(eventObj) {
     setStats({...stats, [eventObj.label]: eventObj.value })
 
@@ -58,10 +86,6 @@ function App() {
     }
   }
 
-  function calculateAc() {
-    // const ac = stats.dex + 
-  }
-
   return (
     <div className="app">
       <div className="app_container">
@@ -72,6 +96,7 @@ function App() {
           <StatblockForm 
             onChange={onChange} 
             acStats={acStats}
+            setAcCalcs={setAcCalcs}
             stats={stats}/>
         </div>
       </div>
