@@ -3,11 +3,15 @@ import React, { useState, useEffect } from 'react'
 function Dropdown(props) {
 
   const [ open, setOpen ] = useState(false)
+  // const [ selected, setSelected ] = useState({
+  //   dataName: null,
+  //   dataLabel: `Select ${props.label}:`,
+  //   type: 'dropdown',
+  //   input: props.dataLabel
+  // })
   const [ selected, setSelected ] = useState({
-    dataName: null,
-    dataLabel: `Select ${props.label}:`,
-    type: 'dropdown',
-    input: props.dataLabel
+    label: props.name,
+    value: `Select ${props.label}`
   })
 
   useEffect(() => {
@@ -15,20 +19,18 @@ function Dropdown(props) {
   }, [])
 
   function closeAll(event) {
-    // if (event.target.)
     if (event.target.className !== 'selected') {
       setOpen(false)
     }
   }
 
   function onOpen() {
-    // console.log('here')
     setOpen(!open)
   }
 
   function onSelect(event, option) {
     event.stopPropagation()
-    const newSelected = {...selected, ...option}
+    const newSelected = {...selected, value: option}
     setSelected(newSelected)
     setOpen(false)
     props.onChange(newSelected)
@@ -40,18 +42,27 @@ function Dropdown(props) {
         className="selected"
         onClick={onOpen}
       >
-        {selected.dataLabel}
+        {selected.value}
       </div>
       <div 
         className={`select_options options_open_${open}`}
       >
-        {props.options.map(option => (
+        {/* {props.options.map(option => (
           <div
           className="select_option"
           onClick={(event) => onSelect(event, option)}
           data-name={option}
           >
             {option.dataLabel}
+          </div>
+        ))} */}
+        {props.options.map(option => (
+          <div
+          className="select_option"
+          onClick={(event) => onSelect(event, option)}
+          data-name={option}
+          >
+            {option}
           </div>
         ))}
         </div>

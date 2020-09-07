@@ -39,14 +39,16 @@ function App() {
     actions: []
   })
 
-  function onChange(event) {
-    if (event.type === 'dropdown') {
-      setStats({...stats, [event.input]: event.dataLabel })
-    } else if (event.type === 'optionSelect') {
-      setStats({...stats, [event.input]: event.value })
-    } else {
-      setStats({...stats, [event.target.name]: event.target.value })
-    }
+  function onChange(eventObj) {
+    setStats({...stats, [eventObj.label]: eventObj.value })
+
+    // if (eventObj.type === 'dropdown') {
+    //   setStats({...stats, [event.input]: event.dataLabel })
+    // } else if (event.type === 'optionSelect') {
+    //   setStats({...stats, [event.input]: event.value })
+    // } else {
+    //   setStats({...stats, [event.target.name]: event.target.value })
+    // }
   }
 
   function acStats(input) {
@@ -54,6 +56,10 @@ function App() {
     if (input.ac !== stats.ac || input.acType !== stats.acType)  {
       setStats({...stats, ac: input.ac, acType: input.acType})
     }
+  }
+
+  function calculateAc() {
+    // const ac = stats.dex + 
   }
 
   return (

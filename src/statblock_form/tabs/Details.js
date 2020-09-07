@@ -1,71 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import TextInput from '../inputs/TextInput'
 import Dropdown from '../inputs/Dropdown'
 import Ac from '../inputs/specific/Ac'
 
-import changeName from '../../state/actions'
-import changeSize from '../../state/actions'
+// import actions from '../../state/actions'
 
-import store from '../../state/store'
+// import store from '../../state/store'
 
 function Details(props) {
 
-  function onChangeTest(event) {
-    switch (event.target.name) {
-      case 'name':
-        store.dispatch(changeName(event.target.value))
-        break
-      // case 'size':
-        // store.dispatch(changeSize(event.))
-      default:
-        return
-    }
-    console.log(store.getState())
-  }
+  // function onChangeTest(eventObj) {
+  //   switch (eventObj.label) {
+  //     case 'name':
+  //       store.dispatch(actions.changeName(eventObj.value))
+  //       break
+  //     case 'hitpoints':
+  //       store.dispatch(actions.changeHitpoints(eventObj.value))
+  //       break
+  //     case 'size':
+  //       store.dispatch(actions.changeSize(eventObj.value))
+  //       break
+  //     case 'type':
+  //       console.log('type')
+  //       store.dispatch(actions.changeType(eventObj.value))
+  //       break
+  //     default:
+  //       return
+  //   }
+  //   console.log(store.getState())
+  // }
 
-  const types = [
-    {
-      dataName: "humanoid",
-      dataLabel: "Humaniod"
-    },
-    {
-      dataName: "celestial",
-      dataLabel: "Celestial"
-    },
-    {
-      dataName: "fiend",
-      dataLabel: "Fiend"
-    }
+  const types = [ "Humaniod", "Celestial", "Fiend" ]
 
-  ]
-
-  const sizes = [
-    {
-      dataName: "tiny",
-      dataLabel: "Tiny"
-    },
-    {
-      dataName: "small",
-      dataLabel: "Small"
-    },
-    {
-      dataName: "medium",
-      dataLabel: "Medium"
-    },
-    {
-      dataName: "large",
-      dataLabel: "Large"
-    },
-    {
-      dataName: "huge",
-      dataLabel: "Huge"
-    },
-    {
-      dataName: "gargantuan",
-      dataLabel: "Gargantuan"
-    }
-  ]
+  const sizes = ["Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan"]
 
   return (
     <div className="Creature Details">
@@ -73,20 +41,22 @@ function Details(props) {
     <TextInput 
       name="name" 
       label="Name" 
-      // onChange={props.onChange}
-      onChange={onChangeTest}
-      // value={props.stats.name}
+      onChange={props.onChange}
+      // onChange={onChangeTest}
+      value={props.stats.name}
     />
     <Dropdown 
+      name="size"
       label="Size"
-      dataLabel="size"
       onChange={props.onChange}
+      // onChange={onChangeTest}
       options={sizes}
       value={props.stats.size}
     />
     <Dropdown 
+      name="type"
       label="Type"
-      dataLabel="type"
+      // onChange={onChangeTest}
       onChange={props.onChange}
       options={types}
       value={props.stats.type}
@@ -113,6 +83,7 @@ function Details(props) {
       name="hitpoints" 
       label="Hit Points" 
       onChange={props.onChange}
+      // onChange={onChangeTest}
       value={props.stats.hitpoints}
     />
     <div>

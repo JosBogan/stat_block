@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 function Ac(props) {
 
   const { acStats } = props
-  console.log(acStats)
+  // console.log(acStats)
   const [ac, setAc] = useState(0)
   const [acType, setAcType] = useState()
   const [armourType, setArmourType] = useState(null)
