@@ -46,8 +46,8 @@ const ac = (state = 0, action) => {
   }
 }
 
-const stats = combineReducers({
+const rootReducer = combineReducers({
   name, hitpoints, size, creatureType, ac
 })
 
-export default stats
+export default rootReducer

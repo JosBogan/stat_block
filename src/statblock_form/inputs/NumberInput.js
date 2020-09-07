@@ -1,6 +1,15 @@
 import React from 'react'
 
 function NumberInput(props) {
+
+  function returnChange(event) {
+    const returnObj = {
+      label: event.target.name,
+      value: event.target.value,
+    }
+    props.onChange(returnObj)
+  }
+
   return (
     <div>
       <label>{props.label}</label>
@@ -9,7 +18,7 @@ function NumberInput(props) {
         max={`${props.max}`}
         min={0}
         name={props.name}
-        onChange={props.onChange}
+        onChange={(event) => returnChange(event)}
         value={props.value}
       />
     </div>

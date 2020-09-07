@@ -4,9 +4,7 @@ import TextInput from '../inputs/TextInput'
 import Dropdown from '../inputs/Dropdown'
 import Ac from '../inputs/specific/Ac'
 
-// import actions from '../../state/actions'
-
-// import store from '../../state/store'
+import { connect } from 'react-redux'
 
 function Details(props) {
 
@@ -22,7 +20,6 @@ function Details(props) {
   //       store.dispatch(actions.changeSize(eventObj.value))
   //       break
   //     case 'type':
-  //       console.log('type')
   //       store.dispatch(actions.changeType(eventObj.value))
   //       break
   //     default:
@@ -76,7 +73,7 @@ function Details(props) {
     <Ac 
       label="Armour Class"
       acStats={props.acStats}
-      // dex={props.stats.dex}
+      dex={props.stats.dex}
       setAcCalcs={props.setAcCalcs}
       value={[props.stats.acType, props.stats.ac]}
     />
@@ -95,4 +92,4 @@ function Details(props) {
   )
 }
 
-export default Details
+export default connect()(Details)

@@ -4,52 +4,43 @@ function Ac(props) {
 
   const { acStats } = props
   // console.log(acStats)
-  const [ac, setAc] = useState(0)
-  const [acType, setAcType] = useState()
-  const [armourType, setArmourType] = useState(null)
-  const [shield, setShield] = useState(false)
+  const [armourDetails, setArmourDetails] = useState({
+    ac: 10,
+    acType: 'no armour',
+    armourType: {},
+    shield: false
+  })
+
+  function setDetails(event, armour) {
+    event.preventDefault()
+    const newDetails = {
+      ...armourDetails,
+      armourType: {...armourDetails.armourType}
+    }
+    if (event.target.name === 'ac') {
+      newDetails.ac = event.target.value
+    } else if (event.target.name === 'acType') {
+      newDetails.acType = event.target.getAttribute('data-id')
+    } else if (event.target.getAttribute('data-name') === 'armourType') {
+      newDetails.armourType = armour
+    } else if (event.target.getAttribute('data-name') === 'shield') {
+      newDetails.shield = !newDetails.shield
+  }
+    setArmourDetails(newDetails)
+  }
 
   useEffect(() => {
-    acStats({ac, acType, armourType, shield})
-  }, [acStats, ac, acType, armourType, shield])
+    acStats(armourDetails)
+  }, [acStats, armourDetails])
 
 
   
-  useEffect(() => {
-    if (!armourType) return
-    let ac = armourType.ac
-    if (shield) ac += 2
-    const mod = Math.floor(props.dex/2 - 5)
-    switch (armourType.weight) {
-      case 'light':
-        ac += mod
-        break
-      case 'medium':
-        if (mod >= 2) {
-          ac += 2
-        } else {
-          ac += mod
-        }
-        break
-      default:
-    }
-    setAc(ac)
-  }, [armourType, props.dex, shield])
-
-  function changeAcType(event) {
-    event.preventDefault()
-    const armourType = event.target.getAttribute('data-id')
-    setAcType(armourType)
-    if (armourType !== 'worn armour') setArmourType(null)
-  }
-
-  function selectArmourType(armour) {
-    if (armour.type === 'Shield') {
-      setShield(!shield)
-    } else {
-      setArmourType(armour)
-    }
-  }
+  // useEffect(() => {
+  //   if (!armourType) return
+  //   let ac = armourType.ac
+  //   if (shield) ac += 2
+  //   setAc(ac)
+  // }, [armourType, shield])
 
   const wornArmourTypes = [
     { type: 'Padded', ac: 11, weight: 'light' },
@@ -69,39 +60,51 @@ function Ac(props) {
 
   return (
     <div>
+      {console.log(armourDetails)}
       <label>{props.label}</label>
       <div>
+      <button 
+          name="acType"
+          className="ac_type_button" 
+          data-id="no armour"
+          onClick={setDetails}
+        >No Armour</button>
         <button 
+          name="acType"
           className="ac_type_button" 
           data-id="natural armour"
-          onClick={changeAcType}
+          onClick={setDetails}
         >Natural Armour</button>
         <button 
+          name="acType"
           className="ac_type_button" 
           data-id="worn armour"
-          onClick={changeAcType}
+          onClick={setDetails}
         >Worn Armour</button>
         <button 
+          name="acType"
           className="ac_type_button" 
           data-id="other"
-          onClick={changeAcType}
+          onClick={setDetails}
         >Other</button>
         <div>
-          {(acType === 'natural armour' || acType === 'other') && 
+          {(armourDetails.acType === 'natural armour' || armourDetails.acType === 'other') && 
             <input 
               type="number"
               name="ac"
-              onChange={(event) => setAc(event.target.value)}
+              onChange={setDetails}
               // value={props.value[1]}
             />
           }
-          {acType === 'other' && <input />}
-          {acType === 'worn armour' && 
+          {armourDetails.acType === 'other' && <input />}
+          {armourDetails.acType === 'worn armour' && 
           <div className="armour_options">
             {wornArmourTypes.map(armour => (
               <div 
-                className={`armour_type ${armourType && (armour.type === armourType.type) ? 'armour_type_selected': ''} ${shield && armour.type === 'Shield' ? 'armour_type_selected' : ''}`}
-                onClick={(event) => selectArmourType(armour)}>
+                className={`armour_type ${armourDetails.armourType && (armour.type === armourDetails.armourType.type) ? 'armour_type_selected': ''} ${armourDetails.shield && armour.type === 'Shield' ? 'armour_type_selected' : ''}`}
+                data-name={armour.type === 'Shield' ? 'shield' :'armourType'}
+                onClick={(event) => setDetails(event, armour)}
+                >
                 {armour.type} - {armour.weight === 'other' && '+'}{armour.ac} 
                 {(armour.weight === 'light' || armour.weight === 'medium') && ' + Dex Modifier'} 
                 {armour.weight === 'medium' && ' (Max 2)'}

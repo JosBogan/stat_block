@@ -1,11 +1,14 @@
 import { createStore } from 'redux'
-import stats from './reducers'
-import name from './reducers'
+import rootReducer from './reducers'
 
-const store = createStore(stats)
+const initialState = {
+
+}
+
+const store = createStore(rootReducer, initialState)
 
 // console.log(store.getState())
 
-store.subscribe(() => console.log(store.getState()))
+// store.subscribe(() => console.log(store.getState()))
 
 export default store
